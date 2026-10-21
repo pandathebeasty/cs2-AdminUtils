@@ -1,0 +1,11 @@
+{
+  "Prefix": "{green}[AdminUtils] {default}",
+  "Esp.Disabled": "{red}Admin ESP отключён на этом сервере.",
+  "Esp.NoPermission": "Admin ESP могут использовать только {green}администраторы{default}!",
+  "Esp.OnlyDeadOrSpec": "Admin ESP доступен только когда вы {red}мертвы{default} или в {red}наблюдении{default}!",
+  "Esp.Enabled": "Admin ESP был {green}включён!",
+  "Esp.Toggled.Off": "Admin ESP был {red}выключен!",
+  "Esp.DisabledAlive": "Admin ESP был {red}выключен {default}потому что вы теперь живы!",
+  "Esp.DisabledSpawn": "Admin ESP был {red}выключен {default}потому что вы возродились!",
+  "Esp.ReEnabled": "Admin ESP был {green}снова включён {default}после смерти!"
+}

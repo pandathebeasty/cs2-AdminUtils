@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <RootNamespace>AdminUtils</RootNamespace>
+    <AssemblyName>AdminUtils</AssemblyName>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CounterStrikeSharp.API" Version="1.0.376" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- PlayerSettings API (NickFox007) for persistent per-player ESP preference. Soft dependency:
+         Private=false so the DLL is NOT copied next to this plugin - it ships once in
+         addons/counterstrikesharp/shared. If the PlayerSettings core plugin is missing at runtime,
+         the ESP preference falls back to in-memory (session-only). -->
+    <Reference Include="PlayerSettingsApi">
+      <HintPath>3rd_party\PlayerSettingsApi.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Native signatures used by the AllSpec feature (CPlayer_ObserverServices::IsValidObserverTarget).
+         Ships into the plugin's gamedata folder and is loaded by GameData.GetSignature. Edit this JSON
+         to update the signature after a game update - no recompile needed. -->
+    <None Update="gamedata\AdminUtils.json" CopyToOutputDirectory="PreserveNewest" />
+    <!-- Translations loaded by the CounterStrikeSharp Localizer. -->
+    <None Update="lang\**\*.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>

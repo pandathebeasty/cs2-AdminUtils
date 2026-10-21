@@ -1,0 +1,11 @@
+{
+  "Prefix": "{green}[AdminUtils] {default}",
+  "Esp.Disabled": "{red}Admin ESP este dezactivat pe acest server.",
+  "Esp.NoPermission": "Admin ESP poate fi folosit doar de {green}admini{default}!",
+  "Esp.OnlyDeadOrSpec": "Admin ESP este permis doar cât ești {red}mort{default} sau la {red}spectator{default}!",
+  "Esp.Enabled": "Admin ESP a fost {green}activat!",
+  "Esp.Toggled.Off": "Admin ESP a fost {red}dezactivat!",
+  "Esp.DisabledAlive": "Admin ESP a fost {red}dezactivat {default}pentru că ești viu acum!",
+  "Esp.DisabledSpawn": "Admin ESP a fost {red}dezactivat {default}pentru că ai dat spawn!",
+  "Esp.ReEnabled": "Admin ESP a fost {green}reactivat {default}după moarte!"
+}
