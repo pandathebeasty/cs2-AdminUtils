@@ -28,7 +28,7 @@
     <!-- Native signatures used by the AllSpec feature (CPlayer_ObserverServices::IsValidObserverTarget).
          Ships into the plugin's gamedata folder and is loaded by GameData.GetSignature. Edit this JSON
          to update the signature after a game update - no recompile needed. -->
-    <None Update="gamedata\AdminUtils.json" CopyToOutputDirectory="PreserveNewest" />
+    <!-- <None Update="gamedata\AdminUtils.json" CopyToOutputDirectory="PreserveNewest" /> -->
     <!-- Translations loaded by the CounterStrikeSharp Localizer. -->
     <None Update="lang\**\*.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>

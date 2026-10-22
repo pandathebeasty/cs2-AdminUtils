@@ -94,12 +94,7 @@ jobs:
 
             Extract the archive into:
 
-            addons/counterstrikesharp/plugins
-
-            This package includes:
-            - AdminUtils.dll
-            - lang/
-            - gamedata/
+            addons/counterstrikesharp/  
 
             The plugin will be loaded automatically by CounterStrikeSharp.
 
