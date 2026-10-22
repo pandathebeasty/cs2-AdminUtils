@@ -1,8 +1,7 @@
 # AdminUtils
 
-Admin spectator utilities for Counter-Strike 2, built on
-[CounterStrikeSharp](https://github.com/roflmuffin/CounterStrikeSharp). Two features in one plugin,
-each independently toggleable from a single config:
+Admin utilities for Counter-Strike 2, built on
+[CounterStrikeSharp](https://github.com/roflmuffin/CounterStrikeSharp).
 
 - **AllSpec** — admins with a flag can spectate everyone, including the enemy team.
 - **ESP** — admins can toggle a team-coloured glow on all players while dead or spectating.
@@ -14,8 +13,7 @@ each independently toggleable from a single config:
 ## Features
 
 ### AllSpec
-Admins holding the configured flag can spectate any connected, alive player on either team. Fully
-automatic — no command needed, it just works for anyone with the flag while they spectate.
+Admins can spectate any connected, alive player on either team.
 
 ### ESP
 `css_esp` toggles a glow on all players, visible through walls. Admins-only, and usable only while
@@ -25,8 +23,7 @@ as the admin stays eligible; it turns off when toggled again or when the admin b
 see them. All ESP feedback is sent only to the admin who ran the command.
 
 The ESP choice is **persistent across reconnects and server restarts** when the optional
-PlayerSettings core plugin is installed (see [Persistence](#persistence)); otherwise it lasts for the
-current session.
+PlayerSettings core plugin is installed; otherwise it lasts for the current session.
 
 ---
 
@@ -48,9 +45,7 @@ Windows and Linux are both supported.
 
 | Command   | Who    | Description                                                                          |
 |-----------|--------|--------------------------------------------------------------------------------------|
-| `css_esp` | admins | Toggle ESP. Allowed only while dead or spectating; re-applies automatically on death. |
-
-AllSpec has no command — any admin with its flag spectates everyone automatically.
+| `css_esp` | admins | Toggle ESP.                                                                          |
 
 ---
 
@@ -77,44 +72,7 @@ AllSpec has no command — any admin with its flag spectates everyone automatica
 }
 ```
 
-- Each feature is independent: set a section's `"Enabled"` to `false` to turn just that feature off.
 - Glow colours accept a hex string (`#RRGGBB`) or a named colour (`Orange`, `SkyBlue`, ...).
-
----
-
-## Translations
-
-Chat messages are localized via CounterStrikeSharp's `Localizer`. The `lang/` folder ships `en.json`,
-`ro.json` and `ru.json`; add a `<code>.json` to support another language. The active language follows
-the server/CSSharp language setting. Translations may use `{color}` tags (e.g. `{green}`, `{red}`,
-`{default}`). All plugin chat is sent only to the player it concerns.
-
----
-
-## Persistence
-
-When the PlayerSettings core plugin is installed, each admin's `css_esp` choice is stored per player
-and restored on their next connect — surviving reconnects and server restarts. The ESP toggle also
-shows up in the PlayerSettings menu.
-
-This is a soft dependency: if PlayerSettings is not installed, AdminUtils still works, but the ESP
-choice only lasts for the current session.
-
----
-
-## Gamedata
-
-AllSpec needs one native signature, shipped in `gamedata/AdminUtils.json`:
-
-| Key                                               | Purpose                                         |
-|---------------------------------------------------|-------------------------------------------------|
-| `CPlayer_ObserverServices::IsValidObserverTarget` | Lets flagged admins spectate everyone.          |
-
-Windows and Linux signatures are both included. If a CS2 update breaks it, edit the signature in this
-file — no recompile needed. CounterStrikeSharp also loads gamedata from
-`addons/counterstrikesharp/gamedata/`, so the file may live there instead; keeping it beside the
-plugin is recommended. The hook is wrapped in try/catch, so a stale signature leaves AllSpec idle
-(logged) rather than crashing the server.
 
 ---
 
@@ -126,5 +84,3 @@ from NuGet.
 ```bash
 dotnet build AdminUtils.csproj -c Release
 ```
-
-Output: `bin/Release/net10.0/AdminUtils.dll`, plus the `gamedata/` and `lang/` folders it needs.
