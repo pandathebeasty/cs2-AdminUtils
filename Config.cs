@@ -5,9 +5,10 @@ namespace AdminUtils;
 
 /// <summary>
 /// Single, shared config for AdminUtils (configs/plugins/AdminUtils/AdminUtils.json).
-/// Combines two features, each independently toggleable:
+/// Combines three features, each independently toggleable:
 ///   - AllSpec : admins with a flag can spectate everyone (incl. the enemy team) while spectating.
 ///   - Esp     : admins toggle a persistent glow/ESP on all players (css_esp) while dead/spectating.
+///   - Spy     : admins with a flag see enemy team-chat and can hear enemy voice (css_voicespy).
 /// </summary>
 public sealed class Config : BasePluginConfig
 {
@@ -24,6 +25,9 @@ public sealed class Config : BasePluginConfig
 
     [JsonPropertyName("Esp")]
     public EspConfig Esp { get; set; } = new();
+
+    [JsonPropertyName("Spy")]
+    public SpyConfig Spy { get; set; } = new();
 }
 
 /// <summary>
@@ -67,4 +71,30 @@ public sealed class EspConfig
     /// </summary>
     [JsonPropertyName("GlowColorCT")]
     public string GlowColorCT { get; set; } = "#87CEEB";
+}
+
+/// <summary>
+/// Spy (ported from itsAudioo/AdminSpy): admins holding one of <see cref="AdminFlags"/> see the enemy
+/// team's team-chat, and - when VoiceSpy is on - can hear the enemy team's voice. css_voicespy toggles
+/// a given admin's voice spy on/off. Flags support "@permission", "#group" and plain command overrides.
+/// </summary>
+public sealed class SpyConfig
+{
+    [JsonPropertyName("Enabled")]
+    public bool Enabled { get; set; } = true;
+
+    /// <summary>
+    /// Admin flags that grant spy access. Each entry is one of:
+    ///   "@css/..."  = permission, "#css/..." = group, anything else = command override.
+    /// </summary>
+    [JsonPropertyName("AdminFlags")]
+    public List<string> AdminFlags { get; set; } = ["@css/chat", "#css/admin"];
+
+    /// <summary>See the enemy team's team-chat messages.</summary>
+    [JsonPropertyName("ChatSpy")]
+    public bool ChatSpy { get; set; } = true;
+
+    /// <summary>Hear the enemy team's voice (admins get ListenAll voice flags on connect).</summary>
+    [JsonPropertyName("VoiceSpy")]
+    public bool VoiceSpy { get; set; } = true;
 }

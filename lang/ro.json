@@ -7,5 +7,14 @@
   "Esp.Toggled.Off": "Admin ESP a fost {red}dezactivat!",
   "Esp.DisabledAlive": "Admin ESP a fost {red}dezactivat {default}pentru că ești viu acum!",
   "Esp.DisabledSpawn": "Admin ESP a fost {red}dezactivat {default}pentru că ai dat spawn!",
-  "Esp.ReEnabled": "Admin ESP a fost {green}reactivat {default}după moarte!"
+  "Esp.ReEnabled": "Admin ESP a fost {green}reactivat {default}după moarte!",
+  "spy.disabled": "{red}Voice spy este dezactivat pe acest server.",
+  "spy.nopermission": "Voice spy poate fi folosit doar de {green}admini{default}!",
+  "spy.voice.team": "Setările tale de voce au fost puse pe {green}implicit{default} (doar echipa).",
+  "spy.voice.all": "Setările tale de voce au fost puse pe {green}ascultă tot{default} (ambele echipe).",
+  "spy.isdead": "{red}(MORT) {default}",
+  "spy.team.t": "{gold}[T]",
+  "spy.team.ct": "{blue}[CT]",
+  "spy.team.spec": "{grey}[SPEC]",
+  "spy.message": "{0}{1} {default}{2} {3}"
 }

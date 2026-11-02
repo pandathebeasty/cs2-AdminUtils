@@ -22,6 +22,16 @@
       <HintPath>3rd_party\PlayerSettingsApi.dll</HintPath>
       <Private>false</Private>
     </Reference>
+
+    <!-- ChatManager API (panda) for chat-spy via a read-only observer. Soft dependency: Private=false
+         so the DLL is NOT copied next to this plugin - ChatManager ships it in
+         addons/counterstrikesharp/shared. When ChatManager is present, the Spy feature registers a
+         chat observer (so it sees chat even for players ChatManager would consume); when absent, Spy
+         falls back to its own say_team Post hook. -->
+    <Reference Include="ChatManagerApi">
+      <HintPath>3rd_party\ChatManagerApi.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>

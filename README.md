@@ -5,6 +5,7 @@ Admin utilities for Counter-Strike 2, built on
 
 - **AllSpec** — admins with a flag can spectate everyone, including the enemy team.
 - **ESP** — admins can toggle a team-coloured glow on all players while dead or spectating.
+- **Spy** — admins with a flag see the enemy team's chat and can hear the enemy team's voice.
 
 > Author: **panda** · Version: **1.0.0** · Target: **.NET 10 / CounterStrikeSharp 1.0.376**
 
@@ -25,6 +26,18 @@ see them. All ESP feedback is sent only to the admin who ran the command.
 The ESP choice is **persistent across reconnects and server restarts** when the optional
 PlayerSettings core plugin is installed; otherwise it lasts for the current session.
 
+### Spy
+Admins holding one of the configured flags see the **enemy team's team-chat** echoed to them, and -
+when voice spy is on - **hear the enemy team's voice** (useful when `sv_alltalk 0`). `css_voicespy`
+toggles a given admin's voice spy between hearing everyone and hearing only their own team. Chat spy
+and voice spy can each be turned off independently in config.
+
+**Works with ChatManager.** If [ChatManager](https://github.com/pandathebeasty/cs2-ChatManager) is
+installed, chat spy automatically switches to a read-only ChatManager observer, so it sees team-chat
+even from players who have a tag (ChatManager would otherwise consume their chat before a plain hook
+could read it). Without ChatManager, chat spy uses its own `say_team` listener. Either way no setup is
+needed — detection is automatic at load. Voice spy does not depend on ChatManager.
+
 ---
 
 ## Installation
@@ -43,9 +56,12 @@ Windows and Linux are both supported.
 
 ## Commands
 
-| Command   | Who    | Description                                                                          |
-|-----------|--------|--------------------------------------------------------------------------------------|
-| `css_esp` | admins | Toggle ESP.                                                                          |
+| Command        | Who    | Description                                                                     |
+|----------------|--------|---------------------------------------------------------------------------------|
+| `css_esp`      | admins | Toggle ESP (while dead or spectating).                                          |
+| `css_voicespy` | admins | Toggle hearing the enemy team's voice (listen all ↔ team only).                 |
+
+AllSpec and chat spy have no command — they apply automatically to admins with the flag.
 
 ---
 

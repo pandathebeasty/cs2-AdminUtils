@@ -7,5 +7,14 @@
   "Esp.Toggled.Off": "Admin ESP has been {red}disabled!",
   "Esp.DisabledAlive": "Admin ESP has been {red}disabled {default}because you are alive now!",
   "Esp.DisabledSpawn": "Admin ESP has been {red}disabled {default}because you spawned!",
-  "Esp.ReEnabled": "Admin ESP has been {green}re-enabled {default}after death!"
+  "Esp.ReEnabled": "Admin ESP has been {green}re-enabled {default}after death!",
+  "spy.disabled": "{red}Voice spy is disabled on this server.",
+  "spy.nopermission": "Voice spy can only be used by {green}admins{default}!",
+  "spy.voice.team": "Your voice settings have been set to {green}default{default} (team only).",
+  "spy.voice.all": "Your voice settings have been set to {green}listen all{default} (both teams).",
+  "spy.isdead": "{red}(DEAD) {default}",
+  "spy.team.t": "{gold}[T]",
+  "spy.team.ct": "{blue}[CT]",
+  "spy.team.spec": "{grey}[SPEC]",
+  "spy.message": "{0}{1} {default}{2} {3}"
 }

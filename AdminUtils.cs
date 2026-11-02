@@ -4,19 +4,20 @@ using Microsoft.Extensions.Logging;
 namespace AdminUtils;
 
 /// <summary>
-/// AdminUtils - two admin spectator features combined into one plugin:
+/// AdminUtils - three admin features combined into one plugin:
 ///   - AllSpec (Features/AllSpec.cs): spectate everyone while spectating, gated by a flag.
 ///   - Esp     (Features/Esp*.cs):    toggleable glow/ESP on all players while spectating.
+///   - Spy     (Features/Spy.cs):     see enemy team-chat and hear enemy voice (css_voicespy).
 ///
 /// Each feature lives in its own file (partial class) and is independently enabled via the single
-/// shared config (AdminUtils.json). Based on qstage/AdminAllSpec and aquevadis/bg-koka-cs2-xray-esp.
+/// shared config (AdminUtils.json).
 /// </summary>
 public sealed partial class AdminUtils : BasePlugin, IPluginConfig<Config>
 {
     public override string ModuleName => "AdminUtils";
-    public override string ModuleVersion => "1.0.0";
+    public override string ModuleVersion => "1.0.1";
     public override string ModuleAuthor => "panda";
-    public override string ModuleDescription => "Admin utilities: all-spec + ESP.";
+    public override string ModuleDescription => "Admin utilities: SpecAll, ESP, Spy other team.";
 
     public Config Config { get; set; } = new();
 
@@ -52,7 +53,24 @@ public sealed partial class AdminUtils : BasePlugin, IPluginConfig<Config>
             Logger.LogInformation("ESP feature enabled (flag: {Flag})", Config.Esp.AdminFlag);
         }
 
+        if (Config.Spy.Enabled)
+        {
+            Spy_Load(hotReload);
+            Logger.LogInformation("Spy feature enabled (chat: {Chat}, voice: {Voice})", Config.Spy.ChatSpy, Config.Spy.VoiceSpy);
+        }
+
         Logger.LogInformation("Loaded {Name} v{Version}", ModuleName, ModuleVersion);
+    }
+
+    public override void OnAllPluginsLoaded(bool hotReload)
+    {
+        // Spy's chat observer depends on ChatManager, which can only be resolved once every plugin
+        // has loaded. When ChatManager is present, chat spy switches from the say_team hook to a
+        // ChatManager observer so tagged players are not missed.
+        if (Config.Spy.Enabled)
+        {
+            Spy_OnAllPluginsLoaded();
+        }
     }
 
     public override void Unload(bool hotReload)
@@ -65,6 +83,11 @@ public sealed partial class AdminUtils : BasePlugin, IPluginConfig<Config>
         if (Config.Esp.Enabled)
         {
             Esp_Unload(hotReload);
+        }
+
+        if (Config.Spy.Enabled)
+        {
+            Spy_Unload(hotReload);
         }
     }
 }
