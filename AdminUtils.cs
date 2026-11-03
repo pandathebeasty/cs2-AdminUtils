@@ -15,7 +15,7 @@ namespace AdminUtils;
 public sealed partial class AdminUtils : BasePlugin, IPluginConfig<Config>
 {
     public override string ModuleName => "AdminUtils";
-    public override string ModuleVersion => "1.0.1";
+    public override string ModuleVersion => "1.0.2";
     public override string ModuleAuthor => "panda";
     public override string ModuleDescription => "Admin utilities: SpecAll, ESP, Spy other team.";
 
@@ -89,5 +89,8 @@ public sealed partial class AdminUtils : BasePlugin, IPluginConfig<Config>
         {
             Spy_Unload(hotReload);
         }
+
+        // Shared PlayerSettings core: shut down once, after every feature has unhooked.
+        Settings_Shutdown();
     }
 }

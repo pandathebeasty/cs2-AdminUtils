@@ -45,7 +45,6 @@ public sealed partial class AdminUtils
     private void Esp_Unload(bool hotReload)
     {
         Esp_DeregisterListeners();
-        Esp_ShutdownPlayerSettings();
         RemoveAllGlowingPlayers();
     }
 
